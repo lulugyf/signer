@@ -147,8 +147,10 @@ public class MainActivity extends Activity implements OnClickListener, Callback
 		return s;
 	}
 	private void sign(String flag) {
-		if(notesID == null)
+		if(notesID == null) {
+			Toast.makeText(MainActivity.this, "input notesid first!!", Toast.LENGTH_SHORT).show();
 			return;
+		}
 		// 加入随机数
 		Random r = new Random();
 		r.setSeed(System.currentTimeMillis());
