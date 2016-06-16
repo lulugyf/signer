@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Signer</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btsignon">On</string>
+    <string name="btsignoff">Off</string>
+    <string name="resulthint">Result will be here</string>
+    <string name="btnotesid">ID</string>
+    <string name="savepos">SavePosition</string>
+    <string name="lochint">Locate</string>
+    <string name="showmap">ShowMap</string>
+    <string name="yournotesidhere">Touch here to input your ID.</string>
+    <string name="hint_gmap_pos">Google map position</string>
+    <!-- <string-array name="saved_loc">
+        <item>NULL</item>
+        <item>loc1</item>
+        <item>loc2</item>
+        <item>loc3</item>
+        <item>loc4</item>
+        <item>loc5</item>
+    </string-array> -->
+        <string name="getGPS">Get Current position via GPS</string>
+    <string name="find_loc">Find Location:</string>
+    <string name="copy_url">Copy URL</string>
+    <string name="open_browser">Open Browser</string>
+    <string name="label_name">Name:</string>
+    <string name="label_longitude">Longitude:</string>
+    <string name="label_latitude">Latitude:</string>
+    <string name="add_loc">Add Location</string>
+    <string name="del_loc">Delete Current Location</string>
+    <string name="show_ip">Show local ip address</string>
+
+</resources>

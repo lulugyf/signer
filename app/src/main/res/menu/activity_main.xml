@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_copyurl"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/copy_url"/>
+    <item
+        android:id="@+id/menu_openbrowser"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/open_browser"/>
+    <item
+        android:id="@+id/menu_addloc"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/add_loc"/>
+    <item
+        android:id="@+id/menu_delloc"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/del_loc"/>
+    <item
+        android:id="@+id/menu_showip"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/show_ip"/>
+</menu>

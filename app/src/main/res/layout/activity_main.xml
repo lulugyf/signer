@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0" >
+
+        <Button
+            android:id="@+id/button_signon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btsignon"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/button_signoff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btsignoff"
+            android:onClick="onClick" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewPos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        android:hint="Position Here"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/textViewNID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        android:hint="@string/yournotesidhere"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView_result"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/resulthint" />
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>
