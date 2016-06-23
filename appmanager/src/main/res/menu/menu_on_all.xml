@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/fav_add" android:title="Add to MyList" />
+    <item android:id="@+id/app_uninst" android:title="Uninstall(su)" />
+    <item android:id="@+id/app_uninst_nm" android:title="Uninstall" />
+</menu>
