@@ -1,19 +1,29 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        guanyf {
+            keyAlias 'cmmusic'
+            keyPassword 'guanyf123'
+            storeFile file('D:/worksrc/android/android.keystore')
+            storePassword 'guanyf123'
+        }
+    }
     compileSdkVersion 23
-    buildToolsVersion '24.0.0'
-
+    buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "tt.bmapsign"
         minSdkVersion 11
         targetSdkVersion 23
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.guanyf
+        }
+        debug {
+            signingConfig signingConfigs.guanyf
         }
     }
     compileOptions {
@@ -24,5 +34,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:18.+'
+    compile 'com.android.support:support-v4:23.+'
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TabedActivity extends AppCompatActivity {
 
@@ -49,6 +50,19 @@ public class TabedActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pageSelected(position);
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -59,7 +73,12 @@ public class TabedActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        setTitle(titles[0]);
+    }
 
+    private String[] titles = {"My App List", "All Apps", "Running Apps"};
+    private void pageSelected(int position) {
+        setTitle(titles[position]);
     }
 
 
@@ -120,11 +139,11 @@ public class TabedActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "My App List";
                 case 1:
-                    return "SECTION 2";
+                    return "All Apps";
                 case 2:
-                    return "SECTION 3";
+                    return "Running Apps";
             }
             return null;
         }
