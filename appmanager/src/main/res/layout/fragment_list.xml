@@ -6,7 +6,8 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_earch" />
+        android:id="@+id/editText_earch"
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/list11"

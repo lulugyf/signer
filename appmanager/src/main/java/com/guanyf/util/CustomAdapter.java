@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,18 +32,21 @@ import com.guanyf.appmanager.R;
 /**
  * Created by guanyf on 10/12/2015.
  */
-public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
+public class CustomAdapter extends BaseAdapter implements View.OnClickListener, Filterable {
 
     /*********** Declare Used Variables *********/
     private Activity activity;
     private List<PackageInfo> data = new LinkedList<PackageInfo>();
+    private List<PackageInfo> origData = null;
     private static LayoutInflater inflater=null;
     private Context context;
     private ItemClick ic;
     public Resources res;
     private boolean initialized = false;
+    private ItemFilter mFilter = new ItemFilter();
 
     public void setData(List<PackageInfo> data) {
+        this.origData = data;
         this.data = data;
         initialized = true;
         this.notifyDataSetChanged();
@@ -52,7 +57,6 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
         /********** Take passed values **********/
         activity = a;
         context = activity.getBaseContext();
-
 
         /***********  Layout inflator to call external xml layout () ***********/
         inflater = (LayoutInflater)activity.
@@ -67,18 +71,47 @@ public class CustomAdapter extends BaseAdapter implements View.OnClickListener {
 
     /******** What is the size of Passed Arraylist Size ************/
     public int getCount() {
-
-        if(data.size()<=0)
-            return 1;
         return data.size();
     }
 
     public Object getItem(int position) {
-        return position;
+        return data.get(position);
     }
 
     public long getItemId(int position) {
         return position;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return mFilter;
+    }
+
+    private class ItemFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String filterString = constraint.toString().toLowerCase();
+
+            FilterResults results = new FilterResults();
+
+            LinkedList<PackageInfo> nlist = new LinkedList<>();
+            for (PackageInfo pi: origData) {
+                if(pi.pkgname.contains(filterString))
+                    nlist.add(pi);
+            }
+
+            results.values = nlist;
+            results.count = nlist.size();
+
+            return results;
+        }
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            data = (List<PackageInfo>) results.values;
+            notifyDataSetChanged();
+        }
+
     }
 
     /********* Create a holder Class to contain inflated xml file elements *********/

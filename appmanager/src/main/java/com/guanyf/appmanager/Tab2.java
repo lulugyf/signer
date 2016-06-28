@@ -1,7 +1,13 @@
 package com.guanyf.appmanager;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.guanyf.util.PackageInfo;
@@ -13,6 +19,30 @@ import java.util.List;
 
 public class Tab2 extends TabBase{
 
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = super.onCreateView(inflater, container, savedInstanceState);
+        EditText et = (EditText)v.findViewById(R.id.editText_earch);
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        et.setVisibility(View.VISIBLE);
+        return v;
+    }
 
     protected void menuAction(int menuid, int position, View view){
         PackageInfo pi = pkgdata.get(position);
