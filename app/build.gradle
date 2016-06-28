@@ -5,7 +5,7 @@ android {
         guanyf {
             keyAlias 'cmmusic'
             keyPassword 'guanyf123'
-            storeFile file('D:/worksrc/android/android.keystore')
+            storeFile file('../android.keystore')
             storePassword 'guanyf123'
         }
     }
