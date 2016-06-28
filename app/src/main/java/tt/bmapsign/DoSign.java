@@ -28,6 +28,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import tt.bmapsign.util.FileLogger;
+
 public class DoSign extends AsyncTask<String, String, String>{
 	private static final String tag = "DoSign";
 	
@@ -130,7 +132,8 @@ public class DoSign extends AsyncTask<String, String, String>{
 		
 		if (!checknet())
 			return "network not connected!";
-		
+
+		String signstr = "Sign "+ (signFlag.charAt(0) == '1'?"On ":"Off ");
 		String body = genBody(notesID, imei, signFlag, latitude, longitude);
 		if(body.startsWith("ERROR:"))
 			return body;
@@ -155,11 +158,15 @@ public class DoSign extends AsyncTask<String, String, String>{
 			HttpResponse ret = defaulthttpclient.execute(httppost);
 			StatusLine sl = ret.getStatusLine();
 			if (sl.getStatusCode() == 200){
-				return EntityUtils.toString(ret.getEntity());
+				String retstr = EntityUtils.toString(ret.getEntity());
+				FileLogger.log(signstr + " Success, return: "+retstr);
+				return retstr;
 			}else{
 				Log.e("NetError", EntityUtils.toString(ret.getEntity()));
-				return String.format("HTTP Err: %d, %s", 
+				String retstr =  String.format("HTTP Err: %d, %s",
 						sl.getStatusCode(), sl.getReasonPhrase());
+				FileLogger.log(signstr+" Fail, return:"+retstr);
+				return retstr;
 			}
 		}
 		catch (Exception ex)

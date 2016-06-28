@@ -244,6 +244,9 @@ public class MainActivity extends Activity implements OnClickListener, Callback
 			delLoc();
 		}else if (id == R.id.menu_showip) {
 			tvResult.setText(Util.showip());
+		}else if(id == R.id.menu_showlog) {
+			Intent intent = new Intent(this, LogviewActivity.class);
+			startActivity(intent);
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}

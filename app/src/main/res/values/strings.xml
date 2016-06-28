@@ -21,7 +21,7 @@
         <item>loc4</item>
         <item>loc5</item>
     </string-array> -->
-        <string name="getGPS">Get Current position via GPS</string>
+    <string name="getGPS">Get Current position via GPS</string>
     <string name="find_loc">Find Location:</string>
     <string name="copy_url">Copy URL</string>
     <string name="open_browser">Open Browser</string>
@@ -31,5 +31,7 @@
     <string name="add_loc">Add Location</string>
     <string name="del_loc">Delete Current Location</string>
     <string name="show_ip">Show local ip address</string>
+    <string name="title_activity_logview">View last 10 logs</string>
+    <string name="menu_showlog">Show Log</string>
 
 </resources>

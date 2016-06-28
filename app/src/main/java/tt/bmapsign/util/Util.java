@@ -26,6 +26,15 @@ public class Util {
         return Environment.getExternalStorageDirectory().getPath();
     }
 
+    public static String join(String[] lines, String sep) {
+        StringBuilder sb = new StringBuilder();
+        for(String line: lines) {
+            sb.append(line);
+            sb.append(sep);
+        }
+        return sb.toString();
+    }
+
     /**
      * 获取外置SD卡路径
      * @return  应该就一条记录或空
