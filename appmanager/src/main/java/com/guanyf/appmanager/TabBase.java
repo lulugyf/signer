@@ -48,8 +48,6 @@ public abstract class TabBase extends Fragment implements ItemClick{
     protected PackageManager pm = null;
     protected CustomAdapter adapter;
 
-    protected List<PackageInfo> pkgdata;
-
     @SuppressLint("InflateParams")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +71,6 @@ public abstract class TabBase extends Fragment implements ItemClick{
             }
             protected void onPostExecute(Boolean result) {
                 if(result.booleanValue()) {
-                    pkgdata = data;
                     adapter.setData(data);
                     removeNotFound();
                 }
@@ -258,7 +255,7 @@ public abstract class TabBase extends Fragment implements ItemClick{
         return resizedBitmap;
     }
 
-    private List<PackageInfo> genInfos(List<PackageInfo> pkgs) {
+    protected List<PackageInfo> genInfos(List<PackageInfo> pkgs) {
         ApplicationInfo aInfo = null;
         PackageManager pm = ctx.getPackageManager();
 

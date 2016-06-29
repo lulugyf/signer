@@ -2,4 +2,7 @@
     <string name="app_name">App Manager</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="menu_savelist">Export fav list</string>
+    <string name="menu_loadlist">Import fav list</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

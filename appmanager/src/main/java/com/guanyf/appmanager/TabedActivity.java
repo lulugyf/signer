@@ -1,5 +1,6 @@
 package com.guanyf.appmanager;
 
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.guanyf.util.SimpleFileDialog;
+import com.guanyf.util.Storage;
+
 public class TabedActivity extends AppCompatActivity {
 
     /**
@@ -30,6 +34,7 @@ public class TabedActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private Storage storage;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -52,9 +57,7 @@ public class TabedActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
             @Override
             public void onPageSelected(int position) {
                 pageSelected(position);
@@ -74,6 +77,8 @@ public class TabedActivity extends AppCompatActivity {
             }
         });
         setTitle(titles[0]);
+
+        storage = new Storage(getSharedPreferences("config", 1));
     }
 
     private String[] titles = {"My App List", "All Apps", "Running Apps"};
@@ -89,6 +94,7 @@ public class TabedActivity extends AppCompatActivity {
         return true;
     }
 
+    private String favlist_file = "";
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -99,6 +105,41 @@ public class TabedActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.action_savelist) {
+            SimpleFileDialog FileOpenDialog =  new SimpleFileDialog(this, SimpleFileDialog.FileSave,
+                    new SimpleFileDialog.SimpleFileDialogListener()
+                    {
+                        @Override
+                        public void onChosenDir(String chosenDir)
+                        {
+                            // The code in this function will be executed when the dialog OK button is pushed
+                            storage.exportList(chosenDir);
+                            favlist_file = chosenDir;
+                            Toast.makeText(TabedActivity.this, storage.status(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+            FileOpenDialog.Default_File_Name = favlist_file;
+            FileOpenDialog.chooseFile_or_Dir();
+        }else if(id == R.id.action_loadlist) {
+            SimpleFileDialog FileOpenDialog =  new SimpleFileDialog(this, SimpleFileDialog.FileOpen,
+                    new SimpleFileDialog.SimpleFileDialogListener()
+                    {
+                        @Override
+                        public void onChosenDir(String chosenDir)
+                        {
+                            // The code in this function will be executed when the dialog OK button is pushed
+                            storage.importList(chosenDir);
+                            favlist_file = chosenDir;
+                            Toast.makeText(TabedActivity.this, storage.status(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+            FileOpenDialog.Default_File_Name = favlist_file;
+            FileOpenDialog.chooseFile_or_Dir();
+        }else if(id == R.id.action_refresh) {
+            int pageIdx = mViewPager.getCurrentItem();
+            if(pageIdx == 0){
+                
+            }
         }
 
         return super.onOptionsItemSelected(item);

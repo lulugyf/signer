@@ -45,7 +45,7 @@ public class Tab2 extends TabBase{
     }
 
     protected void menuAction(int menuid, int position, View view){
-        PackageInfo pi = pkgdata.get(position);
+        PackageInfo pi = (PackageInfo)adapter.getItem(position);
         String key = "package:"+pi.pkgname;
         switch(menuid){
             case R.id.fav_add:

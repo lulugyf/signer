@@ -2,6 +2,7 @@ package com.guanyf.appmanager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,8 +17,7 @@ import java.util.List;
 public class Tab1 extends TabBase {
 
     protected void menuAction(int menuid, int position, View item){
-        if(pkgdata == null) return;
-        PackageInfo pi = pkgdata.get(position);
+        PackageInfo pi = (PackageInfo)adapter.getItem(position);
         String key = "package:"+pi.pkgname;
         List<String> out = null;
         boolean op_flag = true;  // if needed to adjust its order
@@ -64,6 +64,21 @@ public class Tab1 extends TabBase {
         if(op_flag){ // update the time of package change
             mypkg.update(pi.pkgname);
         }
+    }
+
+    protected void refresh() {
+        new AsyncTask<Void, Void, Boolean>() {
+            private List<PackageInfo> data;
+            protected Boolean doInBackground(Void... params) {
+                data = genInfos(getPackageList());
+                return data != null;
+            }
+            protected void onPostExecute(Boolean result) {
+                if(result.booleanValue()) {
+                    adapter.setData(data);
+                }
+            }
+        }.execute();
     }
 
     /**

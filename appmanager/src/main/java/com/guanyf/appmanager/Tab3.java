@@ -37,7 +37,7 @@ public class Tab3 extends TabBase {
 
     @Override
     protected void menuAction(int menuid, int position, View view) {
-        String pkgname = pkgdata.get(position).pkgname;
+        String pkgname = ((PackageInfo)adapter.getItem(position)).pkgname;
         switch(menuid){
             case R.id.running_kill:
                 LinkedList<String> out = new LinkedList<String>();
