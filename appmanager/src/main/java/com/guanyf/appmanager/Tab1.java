@@ -3,6 +3,7 @@ package com.guanyf.appmanager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Tab1 extends TabBase {
+    final static String tag = "com.guanyf.appmanager";
 
     protected void menuAction(int menuid, int position, View item){
         PackageInfo pi = (PackageInfo)adapter.getItem(position);
@@ -60,6 +62,9 @@ public class Tab1 extends TabBase {
                     //Toast.makeText(ctx, "App disabled!", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.fav_refresh:
+                refresh();
+                break;
         }
         if(op_flag){ // update the time of package change
             mypkg.update(pi.pkgname);
@@ -70,12 +75,18 @@ public class Tab1 extends TabBase {
         new AsyncTask<Void, Void, Boolean>() {
             private List<PackageInfo> data;
             protected Boolean doInBackground(Void... params) {
-                data = genInfos(getPackageList());
+                List<PackageInfo> pkglist = getPackageList();
+                for(PackageInfo pi: pkglist){
+                    Log.d(tag, "--  "+pi.pkgname);
+                }
+                Log.d(tag, "--size " + pkglist.size());
+                data = genInfos(pkglist);
                 return data != null;
             }
             protected void onPostExecute(Boolean result) {
                 if(result.booleanValue()) {
                     adapter.setData(data);
+                    Log.d(tag, "adapter size: "+adapter.getCount());
                 }
             }
         }.execute();

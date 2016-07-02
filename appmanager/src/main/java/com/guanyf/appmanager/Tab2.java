@@ -50,7 +50,9 @@ public class Tab2 extends TabBase{
         switch(menuid){
             case R.id.fav_add:
                 if(!mypkg.add(pi.pkgname)){
-                    Toast.makeText(view.getContext(), "Already exists!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Already exists!"+pi.pkgname, Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(view.getContext(), "Add! "+pi.pkgname, Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.app_uninst:

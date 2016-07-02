@@ -81,7 +81,7 @@ public class TabedActivity extends AppCompatActivity {
         storage = new Storage(getSharedPreferences("config", 1));
     }
 
-    private String[] titles = {"My App List", "All Apps", "Running Apps"};
+    private String[] titles = {"My App List", "Running Apps", "All Apps"};
     private void pageSelected(int position) {
         setTitle(titles[position]);
     }
@@ -135,11 +135,6 @@ public class TabedActivity extends AppCompatActivity {
                     });
             FileOpenDialog.Default_File_Name = favlist_file;
             FileOpenDialog.chooseFile_or_Dir();
-        }else if(id == R.id.action_refresh) {
-            int pageIdx = mViewPager.getCurrentItem();
-            if(pageIdx == 0){
-                
-            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -162,9 +157,9 @@ public class TabedActivity extends AppCompatActivity {
             switch (position){
                 case 0:
                     return new Tab1();
-                case 1:
-                    return new Tab2();
                 case 2:
+                    return new Tab2();
+                case 1:
                     return new Tab3();
             }
             return null;
@@ -181,9 +176,9 @@ public class TabedActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return "My App List";
-                case 1:
-                    return "All Apps";
                 case 2:
+                    return "All Apps";
+                case 1:
                     return "Running Apps";
             }
             return null;

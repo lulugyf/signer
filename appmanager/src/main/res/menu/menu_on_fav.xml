@@ -7,4 +7,5 @@
     <item android:id="@+id/fav_remove" android:title="Remove From List" />
     <item android:id="@+id/app_uninst" android:title="Uninstall(su)" />
     <item android:id="@+id/app_uninst_nm" android:title="Uninstall" />
+    <item android:id="@+id/fav_refresh" android:title="@string/menu_refresh" />
 </menu>
